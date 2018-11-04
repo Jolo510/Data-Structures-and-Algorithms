@@ -1,0 +1,50 @@
+** Draft **
+
+Heap Sort Algorithm
+
+Selection sort is finding the smallest element in the array and swaping with the 0th position.
+Then repeat the process by finding the next smallest element in the array and swaping it with the 1st position. 
+
+The two operations are
+- Finding the minimum  O(n)
+- Swapping elements    O(1)
+
+The worst case runtime for this algorithm is O(n^2). Since we need to perform these two operations for 
+every element in the array.
+
+*** 1. MISSED: Mentioning that these operations are supported by Priority Queues ***
+Replace the array with a better priority queue implementation
+- Heap
+- Balanced binary tree
+
+Operations within the loop would take O(log n) instead of O(n)
+
+This speeds up the operation to O(nlogn)
+*** MISSED ***
+
+
+Heap sort is essentially selection sort but using the right data structure.
+
+
+*** 2. MISSED: What data structure are we doing to use to implement the priority queue? *** 
+a. Explain why heaps are better than balanced binary trees
+b. Explain what a heap is
+c. Explain how the heap works
+*** MISSED ***
+
+
+A heap is a binary tree where the parent node dominates the child nodes. 
+- If it's a min heap tree, the parent dominates the child noddes by having a smaller value
+- If it's a max heap tree, the pareent dominates the child nodes by having a larger value
+
+
+Construct the heap
+
+Extracting the minimum
+Take the right most leaf of the tree and move it to the root node.
+If the new root node dominates it's new children, then we leave it as is.
+If not, we swap the parent node with the most dominate child. (The most dominate of out the parent, left child, right child)
+This passes the problem down to the sub tree and the current sub tree is satisfied.
+
+This known as the bubble down strategy. Or Heapify. Since we are taking two trees and turning them into a single heap.
+
