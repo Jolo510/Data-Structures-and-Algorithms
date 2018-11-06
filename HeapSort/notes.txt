@@ -1,46 +1,81 @@
-** Draft **
-
 Heap Sort Algorithm
 
-Selection sort is finding the smallest element in the array and swaping with the 0th position.
-Then repeat the process by finding the next smallest element in the array and swaping it with the 1st position. 
 
-The two operations are
-- Finding the minimum  O(n)
-- Swapping elements    O(1)
 
-The worst case runtime for this algorithm is O(n^2). Since we need to perform these two operations for 
-every element in the array.
+** Understanding Selection Sort **
+Selection sorts works by splitting up the array into sorted and unsorted portions.
 
-*** 1. MISSED: Mentioning that these operations are supported by Priority Queues ***
-Replace the array with a better priority queue implementation
-- Heap
-- Balanced binary tree
+Initially, the entire array is considered to be the unsorted portion of the array.
 
-Operations within the loop would take O(log n) instead of O(n)
+To create the sorted portion of the array, we first find the smallest element in the array
+and swap it with the element at the 0 index.
 
-This speeds up the operation to O(nlogn)
-*** MISSED ***
+By the definition of a sorted array, the smallest element belongs at the 0 index. It is in it's rightful place.
 
+The sorted portion of the array is now the element at the 0 index. The remaining elements in the array will be
+the unsorted portion.
+
+We can continue the process by finding the smallest element in the unsorted portion of the array and
+swapping it with the element at the 1st index.
+
+We continue growing the sorted portion and shrinking the unsorted portion of the array this way.
+Until the unsorted portion of the array no longer exists.
+
+In the end, it results in the entire array being sorted.
+
+The two operations being performed here is
+- Find the minimum
+- Swap
+
+We have to look at every element in the array to find the minimum. That takes O(n) time. n being the number of elements in the array.
+Swapping is done in constant time.
+
+We repeat these two operations for every element in the array. The runtime of Selection sort is O(n^2)
+
+
+
+** How does this relate to Heapsort? (Previously Missed)**
+A priority queue supports finding the minimum in O(log n) time if implemented by a heap or a balanced tree.
+
+This would improve the runtime to O(nlog(n))
 
 Heap sort is essentially selection sort but using the right data structure.
 
 
-*** 2. MISSED: What data structure are we doing to use to implement the priority queue? *** 
+** MISSED: What data structure are we doing to use to implement the priority queue? ** 
 a. Explain why heaps are better than balanced binary trees
 b. Explain what a heap is
 c. Explain how the heap works
 *** MISSED ***
 
-
-A heap is a binary tree where the parent node dominates the child nodes. 
+A heap is a representation of a tree where each node dominates it's children nodes. 
 - If it's a min heap tree, the parent dominates the child noddes by having a smaller value
-- If it's a max heap tree, the pareent dominates the child nodes by having a larger value
+- If it's a max heap tree, the parent dominates the child nodes by having a larger value
+
 
 
 Construct the heap
+TODO: Explain how contructing the heap works
 
 Extracting the minimum
+The root of a min-heap ordered tree is the smallest element. Although, extracting the root leaves
+a hole in the tree.
+
+# Is there a particular reason why we want to choose the right most element? Could it be that
+# we have it's index?
+
+We can take the right most leaf element, sits at the nth position of the array, and move
+it to the root.
+
+The new root may no longer dominate it's two children. We have to find the most dominate of the
+3 (parent, 2 children) and move it to the parent position. The subtree now satifies the conditions
+and the problem is moved to the another sub tree.
+
+The dissatisfied element move to another subtree. We repeat the same process for this subtree. 
+Continue to do so until the dissatisfied dominates it's two children or becomes a leaf node.
+
+This is also known as Heapify. Since it merges to two heaps.
+
 Take the right most leaf of the tree and move it to the root node.
 If the new root node dominates it's new children, then we leave it as is.
 If not, we swap the parent node with the most dominate child. (The most dominate of out the parent, left child, right child)
